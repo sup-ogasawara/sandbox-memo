@@ -20,7 +20,10 @@ interface Props {
 }
 
 const inputClass =
-  'w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-base focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200'
+  'w-full min-w-0 rounded-lg border border-slate-300 bg-white px-3 py-2 text-base focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200'
+
+// iPhone の Safari は日付欄に最小幅と独自の見た目があり、枠からはみ出すため打ち消す
+const dateClass = `${inputClass} block min-h-11 appearance-none text-left [&::-webkit-date-and-time-value]:text-left`
 
 export function MemoForm({ memo, onSave, onDelete, onClose }: Props) {
   const [form, setForm] = useState<MemoInput>(
@@ -75,12 +78,12 @@ export function MemoForm({ memo, onSave, onDelete, onClose }: Props) {
         </header>
 
         <div className="space-y-4 overflow-y-auto px-5 py-4">
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-3">
             <Field label="いつ" error={errors.date}>
-              <input type="date" className={inputClass} value={form.date} onChange={(e) => set('date', e.target.value)} />
+              <input type="date" className={dateClass} value={form.date} onChange={(e) => set('date', e.target.value)} />
             </Field>
             <Field label="確認日（振返日）" error={errors.reviewDate}>
-              <input type="date" className={inputClass} value={form.reviewDate} onChange={(e) => set('reviewDate', e.target.value)} />
+              <input type="date" className={dateClass} value={form.reviewDate} onChange={(e) => set('reviewDate', e.target.value)} />
             </Field>
           </div>
 
