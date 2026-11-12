@@ -1,0 +1,10 @@
+# Cloudflare Pages の設定
+name = "sandbox-memo"
+compatibility_date = "2026-11-01"
+pages_build_output_dir = "dist"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "sandbox-memo"
+# Cloudflare で D1 を作成したら、発行された ID に置き換える
+database_id = "00000000-0000-0000-0000-000000000000"
