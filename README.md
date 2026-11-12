@@ -72,10 +72,21 @@ pnpm dev                # 画面（http://localhost:5173。/api は 8788 に転�
 
 ## 公開（Cloudflare Pages）
 
+GitHub リポジトリと連携しており、`main` にプッシュすると自動でビルド・公開されます。
+
+| 設定 | 値 |
+| --- | --- |
+| ビルドコマンド | `pnpm build` |
+| 出力ディレクトリ | `dist` |
+| D1 | `wrangler.toml` の `[[d1_databases]]`（binding `DB`） |
+| 環境変数（シークレット） | `BASIC_AUTH_USER` / `BASIC_AUTH_PASS` |
+
+初回のみ行ったこと:
+
 1. `wrangler d1 create sandbox-memo` で D1 を作り、表示された ID を `wrangler.toml` の `database_id` に入れる
 2. `pnpm db:init:remote` で本番の D1 にテーブルを作る
-3. Pages プロジェクトの環境変数に `BASIC_AUTH_USER` / `BASIC_AUTH_PASS` を登録する
-4. `pnpm deploy`
+3. Cloudflare の画面で Pages プロジェクトを作り、GitHub リポジトリを繋ぐ
+4. 環境変数に `BASIC_AUTH_USER` / `BASIC_AUTH_PASS` を登録する
 
 検索エンジンに載らないよう、`robots.txt`・`<meta name="robots">`・`X-Robots-Tag` で noindex にしています。
 

@@ -11,8 +11,7 @@
     "lint": "oxlint",
     "db:init:local": "wrangler d1 execute sandbox-memo --local --file schema.sql",
     "db:seed:local": "wrangler d1 execute sandbox-memo --local --file seed.sql",
-    "db:init:remote": "wrangler d1 execute sandbox-memo --remote --file schema.sql",
-    "deploy": "pnpm build && wrangler pages deploy dist"
+    "db:init:remote": "wrangler d1 execute sandbox-memo --remote --file schema.sql"
   },
   "dependencies": {
     "react": "^19.3.1",
@@ -31,5 +30,6 @@
     "typescript": "~7.0.2",
     "vite": "^8.3.6",
     "wrangler": "^4.160.0"
-  }
+  },
+  "packageManager": "pnpm@12.18.0"
 }
